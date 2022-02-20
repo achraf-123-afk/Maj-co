@@ -1,0 +1,199 @@
+<mat-tab-group>
+  <mat-tab label="Collaborateurs">
+    <div style="width: 70%; margin: 0 auto">
+      <div
+        style="margin-top: 2rem; display: flex; justify-content: space-between"
+      >
+        <mat-form-field appearance="legacy">
+          <mat-label>Chercher par nom</mat-label>
+          <input (input)="searchCollabChange($event)" matInput />
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+        <button
+          style="height: 50px"
+          (click)="openAddCollaboratorModal()"
+          mat-raised-button
+        >
+          Ajouter collaborateur
+        </button>
+      </div>
+
+      <div>
+        <table
+          mat-table
+          [dataSource]="updatedCollaborators"
+          style="width: 100%"
+          class="mat-elevation-z8"
+        >
+          <!-- Position Column -->
+          <ng-container matColumnDef="Matricule">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+              mat-header
+              sortActionDescription="Sort by number"
+            >
+              ID
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.matricule }}</td>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="Nom">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+              mat-header
+              sortActionDescription="Sort by weight"
+            >
+              Nom
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.firstName }}</td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="Prénom">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+              mat-header
+              sortActionDescription="Sort by symbol"
+            >
+              Prénom
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.lastName }}</td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="Date de naissance">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+              mat-header
+              sortActionDescription="Sort by symbol"
+            >
+              Date de naissance
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.birthdate | date: "short" }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="Situation">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+              mat-header
+              sortActionDescription="Sort by symbol"
+            >
+              Situation
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.situation }}</td>
+          </ng-container>
+          <ng-container matColumnDef="Salaire">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+              mat-header
+              sortActionDescription="Sort by symbol"
+            >
+              Salaire
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.salary }}</td>
+          </ng-container>
+          <ng-container matColumnDef="Action">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+              mat-header
+              sortActionDescription="Sort by symbol"
+            >
+              Action
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <button (click)="openAreYouSureModal(element)" mat-raised-button>
+                Supprimer
+              </button>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Absences">
+    <div style="width: 70%; margin: 0 auto">
+      <div style="margin-top: 2rem; margin-bottom: 1rem">
+        <div style="display: flex; justify-content: flex-end">
+          <button (click)="openManageAbsence()" mat-raised-button>
+            Ajouter absence
+          </button>
+        </div>
+      </div>
+      <table
+        mat-table
+        [dataSource]="absences"
+        style="width: 100%"
+        class="mat-elevation-z8"
+      >
+        <ng-container matColumnDef="CollaborateurID">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            mat-header
+            sortActionDescription="Sort by weight"
+          >
+            CollaborateurID
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.collaboratorID }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Début">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            mat-header
+            sortActionDescription="Sort by symbol"
+          >
+            Début
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.start | date: "short" }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Fin">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            mat-header
+            sortActionDescription="Sort by symbol"
+          >
+            Fin
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.end | date: "short" }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Motif">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            mat-header
+            sortActionDescription="Sort by symbol"
+          >
+            Motif
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.motif }}
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns2"></tr>
+      </table>
+    </div>
+  </mat-tab>
+</mat-tab-group>

@@ -1,0 +1,18 @@
+<div style="width: 100%">
+    <h2 style="margin-bottom: 2rem; text-align: center">Êtes vous sûr?</h2>
+    <h4 style="text-align: center; margin-bottom: 2rem">
+      {{ localData.message }}
+    </h4>
+  
+    <div style="width: 100%; display: flex; justify-content: flex-end">
+      <button
+        (click)="confirm()"
+        color="primary"
+        mat-raised-button
+        style="margin-right: 1rem"
+      >
+        Confirmer
+      </button>
+      <button mat-raised-button>Annuler</button>
+    </div>
+  </div>

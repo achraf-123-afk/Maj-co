@@ -1,0 +1,82 @@
+<div
+  style="
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  "
+>
+  <div style="margin-top: 2rem; padding: 1rem">
+    <div
+      style="display: flex; align-items: center; justify-content: space-around"
+    >
+      <mat-form-field
+        style="margin-right: 1.6rem; width: 50%"
+        appearance="legacy"
+      >
+        <mat-label>Nom</mat-label>
+        <input (input)="checkifCanConfirm()" [(ngModel)]="nom" matInput />
+      </mat-form-field>
+      <mat-form-field style="width: 50%" appearance="legacy">
+        <mat-label>Prénom</mat-label>
+        <input (input)="checkifCanConfirm()" [(ngModel)]="prenom" matInput />
+      </mat-form-field>
+    </div>
+
+    <div
+      style="display: flex; align-items: center; justify-content: space-around"
+    >
+      <mat-form-field
+        style="margin-right: 1.6rem; width: 50%"
+        appearance="legacy"
+      >
+        <mat-label>Salaire</mat-label>
+        <input (input)="checkifCanConfirm()" [(ngModel)]="salaire" matInput />
+      </mat-form-field>
+      <mat-form-field style="width: 50%" appearance="legacy">
+        <mat-label>situation</mat-label>
+        <input (input)="checkifCanConfirm()" matInput [(ngModel)]="situation" />
+      </mat-form-field>
+    </div>
+    <div
+      style="display: flex; align-items: center; justify-content: space-around"
+    >
+      <mat-form-field
+        style=" width: 100%"
+        appearance="legacy"
+      >
+        <mat-label>Date de naissance</mat-label>
+        <input
+          (change)="checkifCanConfirm()"
+          [(ngModel)]="dateNaissance"
+          matInput
+          [matDatepicker]="datepicker"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="datepicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #datepicker>
+          <mat-datepicker-actions>
+            <button mat-button matDatepickerCancel>Cancel</button>
+            <button mat-raised-button color="primary" matDatepickerApply>
+              Apply
+            </button>
+          </mat-datepicker-actions>
+        </mat-datepicker>
+      </mat-form-field>
+     
+    </div>
+  </div>
+  <div style="display: flex; justify-content: flex-end; padding: 1rem">
+    <button
+      color="primary"
+      style="margin-right: 1rem"
+      mat-raised-button
+      (click)="action()"
+    >
+      Confirmer
+    </button>
+    <button (click)="dialogRef.close()" mat-raised-button>Anuler</button>
+  </div>
+</div>
